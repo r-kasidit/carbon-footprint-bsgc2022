@@ -1,5 +1,7 @@
+# import data set ----
 my_cf <- read.csv("my_cf.csv")
 
+# library packages
 library(tidyverse)
 library(rcartocolor)
 library(ggtext)
@@ -7,10 +9,11 @@ library(cowplot)
 library(patchwork)
 library(showtext)
 
+# add font----
 font_add_google("Fira Sans", "Fira Sans")
 font_add_google("Playfair Display", "Playfair Display")
 
-## ggplot theme
+# ggplot theme ----
 theme_set(theme_minimal(base_family = "Fira Sans"))
 
 theme_update(plot.background = element_rect(fill = "transparent",
@@ -43,6 +46,7 @@ theme_update(plot.background = element_rect(fill = "transparent",
              plot.margin = margin(10, 0, 10, 0))
 
 
+# select some columns
 my_cf = my_cf[,c(1,2,3,11)]
 my_cf$SCOPE = as.factor(my_cf$SCOPE)
 my_cf$percent = my_cf$cf*100/sum(my_cf$cf)
@@ -50,6 +54,7 @@ my_cf$SCOPE = as.factor(my_cf$SCOPE)
 
 my_cf$percent = round(my_cf$percent, digits = 1)
 
+# add some angle and position for text label
 new_cf <-
   my_cf %>%
   arrange(SCOPE, percent) %>%
@@ -71,8 +76,10 @@ new_cf <-
     hjust_cont = if_else(angle_cont > 90, 0, 1),
     angle_cont = ifelse(angle_cont > 90, angle_cont + 180, angle_cont)
   )
+
+# ploting
   
-p =new_cf %>%
+p = new_cf %>%
   ggplot(aes(1, percent)) +
   geom_col(
     aes(
@@ -95,7 +102,6 @@ p =new_cf %>%
     ymin = -Inf, ymax = Inf,
     fill = "#7e9bba"
   ) +
-  
   coord_polar(theta = "y") +
   scale_x_continuous(limits = c(0, 1.9)) +
   scale_color_carto_d(palette = "TealGrn", direction = -1, guide = F) +
@@ -103,16 +109,18 @@ p =new_cf %>%
   scale_alpha(range = c(.3, 1), guide = F) +
   scale_size(range = c(.7, 14), guide = F)
 
-sum(new_cf$cf)
-
-ggsave('myplot.png', p, dpi=300, width = 23, height = 23, units = 'in')
+# save the plot ----
+#ggsave('myplot.png', p, dpi=300, width = 23, height = 23, units = 'in')
 
 library(echarts4r)
 library(echarts4r.assets)
 
 tree = read.csv('cf-tree.csv')
 
-
+# add custom svg icon
+tree_icon = c(path = "M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z",
+              name = "tree")
+icons = rbind(icons, tree_icon)
 
 
 t =tree %>% 
@@ -139,21 +147,3 @@ t =tree %>%
     backgroundColor = "rgba(255,255,255,1)"
   )
 
-tree_icon = c(path = "M8.416.223a.5.5 0 0 0-.832 0l-3 4.5A.5.5 0 0 0 5 5.5h.098L3.076 8.735A.5.5 0 0 0 3.5 9.5h.191l-1.638 3.276a.5.5 0 0 0 .447.724H7V16h2v-2.5h4.5a.5.5 0 0 0 .447-.724L12.31 9.5h.191a.5.5 0 0 0 .424-.765L10.902 5.5H11a.5.5 0 0 0 .416-.777l-3-4.5zM6.437 4.758A.5.5 0 0 0 6 4.5h-.066L8 1.401 10.066 4.5H10a.5.5 0 0 0-.424.765L11.598 8.5H11.5a.5.5 0 0 0-.447.724L12.69 12.5H3.309l1.638-3.276A.5.5 0 0 0 4.5 8.5h-.098l2.022-3.235a.5.5 0 0 0 .013-.507z",
-              name = "tree")
-icons = rbind(icons, tree_icon)
-
-ggsave('tree.png', t, dpi=300, width = 15, height = 15, units = 'in' )
-library(waffle)
-library(extrafont)
-font_import()
-
-# check that Font Awesome is imported
-fonts()[grep("Awesome", fonts())]
-# [1] "FontAwesome"
-iron(
-  waffle(c(no = 80, yes = 20), rows = 5, use_glyph = "car", glyph_size = 6, 
-         colors = c("#c7d4b6", "#a3aabd"), title = "Country A"),
-  waffle(c(no = 70, yes = 30), rows = 5, use_glyph = "car", glyph_size = 6,
-         colors = c("#c7d4b6", "#a3aabd"), title = "Country B")
-)
