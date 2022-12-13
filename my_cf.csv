@@ -1,0 +1,22 @@
+SCOPE,main,desc,dist,Sm-unit,Burn-rate,Uni-burn-rate,amount,unit,ef,cf,percent
+1,food,food,,,,,904,person/meal,2.4432,2208.65,20.13
+1,food,vegan food,,,,,8,person/meal,0.7496,6.00,0.05
+1,food,break food,,,,,"1,080",person/meal,0.0861,92.99,0.85
+1,food,water (with bottle 600 ml),,,,,700,person/meal,0.1596,111.72,1.02
+1,food,water (other purposes),,,,,5,cubic L,0.7948,3.97,0.04
+2,electric,light bulb,,36,120,36,155.52,kWh,0.4999,5501.6,50.13
+2,electric,air conditioner,0.293071,7033.704,3,36,759.640032,kWh,0.4999,196.11,1.79
+2,electric,elevators,39.60144,,,,39.60144,kWh,0.4999,19.80,0.18
+3,traveling,personal cars,100,km,13.7960,km/L,7.2485,L,2.2373,8.11,0.07
+3,traveling,taxi,50,km,11.1110,km/kg,4.5000,L,2.254,9.47,0.09
+3,traveling,bus,200,km,11.9050,km/L,0.5250,L,2.7403,6.39,0.06
+3,traveling,van,100,km,2.8500,km/L,2.3392,L,2.7403,1.65,0.02
+3,traveling,subways,400,,,,400,person/trip,0.7102,71.02,0.65
+3,traveling,domestic fligt,2103,km,,,2103,pkm,0.1733,196.18,1.79
+3,traveling,international flight,14686,km,,,14686,pkm,0.098,1439.23,13.11
+3,hotel,hotel with air condition,,,,,124,person/nights,2.5600,317.44,2.89
+3,items in conference,paper,,,,,12.5,kg,2.102,21.02,0.19
+3,items in conference,plastic items,,,,,100,kg,2.6922,26.92,0.25
+3,items in conference,canvas bags,,,,,100,kg,1.2072,19.92,0.18
+3,items in conference,T-stirt,,,,,100,poster,2,90,0.82
+3,waste,misc.,,,,,270,person,2.3200,626.40,5.71
