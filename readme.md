@@ -1,3 +1,6 @@
-# Carbon footprint of the BSGC-27 event
+# :deciduous_tree: Carbon footprint of the BSGC-27 event
 
-## this code was adpated from here
+In dataset, distances of personal cars, taxi, and subways are from estimation.
+
+
+
