@@ -1,3 +1,3 @@
-# repoitory fir storing how to calculate corbon footprint of BSGC 27 events
+# Carbon footprint of the BSGC-27 event
 
 ## this code was adpated from here
